@@ -26,3 +26,21 @@ with PdfMerger() as pdf_marger:
     for newFile in all_pdf:
         pdf_marger.append(newFile)
     pdf_marger.write('update_pdf.pdf')
+
+
+
+# ei khane mojar ekta kaj kora ashe amar file a joto (.pdf) name extension ashe sob gulake dhore marge kore dibe 
+import os
+from PyPDF2 import PdfMerger
+
+folder = "pdf"  # তোমার PDF ফাইলগুলো যে ফোল্ডারে আছে
+
+# ফোল্ডার থেকে সব .pdf ফাইল লিস্ট করো
+all_pdf = [os.path.join(folder, f) for f in os.listdir(folder) if f.endswith(".pdf")]
+all_pdf.sort()  # ফাইল নাম অনুযায়ী সাজানো (optional)
+
+# PDF Merge করো
+with PdfMerger() as pdf_merger:
+    for file in all_pdf:
+        pdf_merger.append(file)
+    pdf_merger.write("update_pdf.pdf")  # আউটপুট ফাইল
